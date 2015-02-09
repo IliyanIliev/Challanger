@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="4"
+    android:padding="10dp"
+    android:background="#000000">
+
+    <!--ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/challenges_listView" /-->
+    <fragment
+        android:id="@+id/park_fragment_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        class="com.example.user.myapplication.homepage.challenges_menuitems.ParkMenuItemFragment" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#000000" />
+
+    <fragment
+        android:id="@+id/city_fragment_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        class="com.example.user.myapplication.homepage.challenges_menuitems.CityMenuItemFragment" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#000000" />
+
+    <fragment
+        android:id="@+id/mall_fragment_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        class="com.example.user.myapplication.homepage.challenges_menuitems.MallMenuItemFragment" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#000000" />
+
+    <fragment
+        android:id="@+id/other_fragment_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        class="com.example.user.myapplication.homepage.challenges_menuitems.OtherMenuItemFragment" />
+
+</LinearLayout>

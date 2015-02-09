@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+   >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/review_photoCounter_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+
+            />
+
+
+        <ImageView
+            android:id="@+id/review_photo_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="350dp"
+            android:background="#000000"
+            android:padding="5dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:id="@+id/review_challenger_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_approvals"
+            android:gravity="center"
+             />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+           >
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:text="@string/approve"
+                android:src="@drawable/ic_checked"
+                android:id="@+id/review_approve_button"
+                android:scaleType="center"
+                android:layout_marginRight="100dp" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_reject"
+                android:text="@string/reject"
+                android:id="@+id/review_reject_button"
+                android:scaleType="center" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
