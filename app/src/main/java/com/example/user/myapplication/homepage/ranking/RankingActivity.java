@@ -1,24 +1,28 @@
-package com.example.user.myapplication.homepage;
+package com.example.user.myapplication.homepage.ranking;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.user.myapplication.R;
+import com.example.user.myapplication.homepage.NavigationDrawerFragment;
+import com.example.user.myapplication.homepage.achievements.AchievementsActivity;
+import com.example.user.myapplication.homepage.challenges.ChallengesActivity;
+import com.example.user.myapplication.homepage.logout.LogoutActivity;
+import com.example.user.myapplication.homepage.profile.ProfileActivity;
+import com.example.user.myapplication.homepage.profile.ProfileFragment;
+import com.example.user.myapplication.homepage.review.ReviewActivity;
 
-import listeners.OnReviewViewPagerButtonClickListener;
-import tools.AssignedChallengeManager;
-import tools.ChallengeManager;
-import tools.UserManager;
+import tools.Constants;
 
 
-public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnReviewViewPagerButtonClickListener {
+public class RankingActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -33,65 +37,69 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_ranking);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        //mTitle=getTitle(); //get Application Name
-        mTitle = "Challenges";
+
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        ChallengeManager.generateChallengeTypes();
-        ChallengeManager.generateChallenges();
-        UserManager.generateUsers();
-        AssignedChallengeManager.generateAssignedChallenges();
+        mTitle = Constants.DRAWER_MENU_ITEM_RANKING;
+        loadRankingFragment();
+    }
 
+    private void loadRankingFragment() {
+        RankingFragment fragment = new RankingFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .add(R.id.ranking_container, fragment)
+                .commit();
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        Fragment fragment = loadRequiredFragment(position);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, fragment)
-                .commit();
+        loadChosenDrawerMenuItem(position);
     }
 
-    private Fragment loadRequiredFragment(int position) {
-        Fragment fragment = null;
+    private void loadChosenDrawerMenuItem(int position) {
+        Intent intent = null;
         switch (position) {
             case 0:
-                fragment = new ProfileFragment();
-                mTitle = "Profile";
+                intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
+                mTitle = Constants.DRAWER_MENU_ITEM_PROFILE;
                 break;
             case 1:
-                fragment = new ChallengesFragment();
-                mTitle = "Challenges";
+                intent = new Intent(this, ChallengesActivity.class);
+                startActivity(intent);
+                mTitle = Constants.DRAWER_MENU_ITEM_CHALLENGES;
                 break;
             case 2:
-                fragment = new AchievementsFragment();
-                mTitle = "Achievements";
+                intent = new Intent(this, AchievementsActivity.class);
+                startActivity(intent);
+                mTitle = Constants.DRAWER_MENU_ITEM_ACHIEVEMENTS;
                 break;
             case 3:
-                fragment = new RankingFragment();
-                mTitle = "Ranking";
+                mTitle = Constants.DRAWER_MENU_ITEM_RANKING;
                 break;
             case 4:
-                fragment = new ReviewFragment();
-                mTitle = "Review";
+                intent = new Intent(this, ReviewActivity.class);
+                startActivity(intent);
+                mTitle = Constants.DRAWER_MENU_ITEM_REVIEW;
                 break;
             case 5:
-                fragment = new LogoutFragment();
-                mTitle = "Logout";
+                intent = new Intent(this, LogoutActivity.class);
+                startActivity(intent);
+                mTitle = Constants.DRAWER_MENU_ITEM_LOGOUT;
                 break;
             default:
                 break;
         }
-        return fragment;
+
     }
 
     public void restoreActionBar() {
@@ -128,12 +136,5 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void reloadViewPager() {
-        ReviewFragment fragment = new ReviewFragment();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment).commit();
     }
 }

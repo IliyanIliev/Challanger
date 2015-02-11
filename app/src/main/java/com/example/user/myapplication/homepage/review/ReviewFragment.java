@@ -1,4 +1,4 @@
-package com.example.user.myapplication.homepage;
+package com.example.user.myapplication.homepage.review;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

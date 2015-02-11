@@ -22,9 +22,9 @@ public class ChallengesListViewAdapter extends BaseAdapter {
     private int challengeNumber;
     // private static String[] challenges = {"The Park", "The City", "The Mall", "Other"};
 
-    public ChallengesListViewAdapter(Context context, String challengeName) {
+    public ChallengesListViewAdapter(Context context, String challengeTypeName) {
         this.context = context;
-        this.challenges = ChallengeManager.getAllChallengeByChallengeType(challengeName);
+        this.challenges = ChallengeManager.getAllChallengeByChallengeType(challengeTypeName);
         this.challengeNumber = 0;
     }
 

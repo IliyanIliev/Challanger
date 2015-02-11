@@ -1,4 +1,4 @@
-package com.example.user.myapplication.homepage;
+package com.example.user.myapplication.homepage.profile;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,12 +10,14 @@ import android.widget.TextView;
 
 import com.example.user.myapplication.R;
 
-public class RankingFragment extends Fragment {
+import tools.Constants;
+
+public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_ranking, container, false);
-        TextView text=(TextView)root.findViewById(R.id.ranking_text_view);
-        text.setText("Ranking");
+        View root = inflater.inflate(R.layout.fragment_profile, container, false);
+        TextView text = (TextView) root.findViewById(R.id.profile_text_view);
+        text.setText("Profile");
         return root;
     }
 }

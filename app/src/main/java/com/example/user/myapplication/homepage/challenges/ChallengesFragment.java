@@ -1,4 +1,4 @@
-package com.example.user.myapplication.homepage.handle_fragments;
+package com.example.user.myapplication.homepage.challenges;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,13 +10,13 @@ import android.widget.ListView;
 import adapters.ChallengesListViewAdapter;
 import tools.Constants;
 
-public class HandleChallengesFragment extends ListFragment {
-    private String challengeName;
+public class ChallengesFragment extends ListFragment {
+    private String challengeTypeName;
     private ChallengesListViewAdapter customAdapter = null;
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        challengeName = getArguments().getString(Constants.CHALLENGE_NAME);
+        challengeTypeName = getArguments().getString(Constants.CHALLENGE_TYPE_NAME);
     }
 
     // onActivityCreated() is called when the activity's onCreate() method has returned.
@@ -24,7 +24,7 @@ public class HandleChallengesFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        customAdapter = new ChallengesListViewAdapter(getActivity(), challengeName);
+        customAdapter = new ChallengesListViewAdapter(getActivity(), challengeTypeName);
 
         // Populate list with all the titles we have in the Constants.TITLES.
         setListAdapter(customAdapter);

@@ -1,4 +1,4 @@
-package com.example.user.myapplication.homepage;
+package com.example.user.myapplication.homepage.logout;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import com.example.user.myapplication.R;
 
-public class ProfileFragment extends Fragment {
+public class LogoutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View root=inflater.inflate(R.layout.fragment_profile,container,false);
-        TextView text=(TextView)root.findViewById(R.id.profile_text_view);
-        text.setText("Profile");
+        View root = inflater.inflate(R.layout.fragment_logout, container, false);
+        TextView text=(TextView)root.findViewById(R.id.logout_text_view);
+        text.setText("Logout");
         return root;
     }
 }

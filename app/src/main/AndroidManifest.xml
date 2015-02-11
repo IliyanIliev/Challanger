@@ -17,8 +17,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".homepage.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:name=".homepage.challenges.ChallengesActivity"
+            android:label="@string/title_activity_challenges" >
+        </activity>
+        <activity
+            android:name=".homepage.profile.ProfileActivity"
+            android:label="@string/title_activity_profile" >
+        </activity>
+        <activity
+            android:name=".homepage.achievements.AchievementsActivity"
+            android:label="@string/title_activity_achievements" >
+        </activity>
+        <activity
+            android:name=".homepage.ranking.RankingActivity"
+            android:label="@string/title_activity_ranking" >
+        </activity>
+        <activity
+            android:name=".homepage.review.ReviewActivity"
+            android:label="@string/title_activity_review" >
+        </activity>
+        <activity
+            android:name=".homepage.logout.LogoutActivity"
+            android:label="@string/title_activity_signout" >
         </activity>
     </application>
 
