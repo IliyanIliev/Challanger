@@ -35,6 +35,7 @@ public class ChallengesFragment extends ListFragment {
     // If the user clicks on an item in the list then the onListItemClick() method is called.
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+//        todo add new activity here
         showDetails(position);
     }
 
