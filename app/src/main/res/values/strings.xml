@@ -17,5 +17,8 @@
     <string name="title_activity_ranking">RankingActivity</string>
     <string name="title_activity_review">ReviewActivity</string>
     <string name="title_activity_signout">SignoutActivity</string>
+    <string name="title_activity_challenge_detail">ChallengeDetail</string>
+    <string name="btnChallengeDetailTakePicture">Take Picture</string>
+    <string name="btnChallengeDetailFinishChallenge">Finish Challenge</string>
 
 </resources>

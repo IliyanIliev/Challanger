@@ -7,12 +7,15 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
+import com.example.user.myapplication.details.ChallengeDetail;
+
 import adapters.ChallengesListViewAdapter;
 import tools.Constants;
 
 public class ChallengesFragment extends ListFragment {
     private String challengeTypeName;
     private ChallengesListViewAdapter customAdapter = null;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -35,7 +38,6 @@ public class ChallengesFragment extends ListFragment {
     // If the user clicks on an item in the list then the onListItemClick() method is called.
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-//        todo add new activity here
         showDetails(position);
     }
 
@@ -45,7 +47,8 @@ public class ChallengesFragment extends ListFragment {
     void showDetails(int index) {
         // Launch new DetailsActivity to display the dialog fragment with selected text. Put selected index as Extra.
         Intent intent = new Intent();
-        intent.setClass(getActivity(), ChallengesListViewAdapter.class);
+        intent.putExtra(Constants.CHALLENGES_FRAGMENT_INTENT_CUSTOM_ADAPTER_NAME_MSG, customAdapter.getItem(index).getChallengeName());
+        intent.setClass(getActivity(), ChallengeDetail.class);
         // intent.putExtra("movie_id", customAdapter.getItem(index).getMovieId());
         startActivity(intent);
 
