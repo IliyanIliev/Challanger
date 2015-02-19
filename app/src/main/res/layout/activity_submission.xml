@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#474747"
+    tools:context="com.mentormate.academy.challenger.activities.SubmissionActivity">
+
+    <TextView
+        android:id="@+id/challenge_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:padding="25dp"
+        android:shadowColor="@android:color/black"
+        android:shadowRadius="5"
+        android:text="Take a photo of a lion. The lion should watch at the camera."
+        android:textColor="@android:color/white" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/challenge_desc"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/challenge_submission"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/cameraBtn"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/noimage" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal|bottom"
+            android:src="@drawable/camerabar" />
+
+        <ImageButton
+            android:id="@+id/cameraBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="@null"
+            android:onClick="dispatchTakePictureIntent"
+            android:padding="15dp"
+            android:src="@drawable/cameraicon" />
+    </FrameLayout>
+
+
+</RelativeLayout>
