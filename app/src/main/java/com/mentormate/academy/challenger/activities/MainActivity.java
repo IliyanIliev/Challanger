@@ -8,8 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ListView;
 
@@ -40,6 +39,7 @@ public class MainActivity extends ActionBarActivity
     private CharSequence mTitle;
     private CustomStoriesAdapter storiesAdapter;
     private ListView storiesListView;
+    DrawerLayout mDrawer;
 
     List<ParseObject> ob;
     private List<Story> storylist = null;
@@ -56,10 +56,12 @@ public class MainActivity extends ActionBarActivity
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
+
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+                mDrawer);
 
         // Execute RemoteDataTask AsyncTask
         new RemoteDataTask().execute();
@@ -115,20 +117,47 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-
+        loadChosenActivity(position);
     }
 
-    public void onSectionAttached(int number) {
-        switch (number) {
+    private void loadChosenActivity(int position) {
+        Intent intent = null;
+        switch (position) {
+            case 0:
+                intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
+                break;
             case 1:
-                mTitle = "Stories";
+
                 break;
             case 2:
-                mTitle = "Smth";
                 break;
             case 3:
-                mTitle = "Smth2";
+                intent = new Intent(this, RankingActivity.class);
+                startActivity(intent);
                 break;
+            case 4:
+                intent = new Intent(this, ReviewActivity.class);
+                startActivity(intent);
+                break;
+            case 5:
+                ParseUser.logOut();
+                Intent logout = new Intent(MainActivity.this, LoginSignupActivity.class);
+                logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(logout);
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(mDrawer.isDrawerOpen(Gravity.LEFT)){
+            mDrawer.closeDrawer(Gravity.LEFT);     // replace this with actual function which closes drawer
+        }
+        else{
+            super.onBackPressed();
         }
     }
 
@@ -137,38 +166,5 @@ public class MainActivity extends ActionBarActivity
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_logout) {
-            ParseUser.logOut();
-            Intent logout = new Intent(MainActivity.this, LoginSignupActivity.class);
-            logout.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(logout);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

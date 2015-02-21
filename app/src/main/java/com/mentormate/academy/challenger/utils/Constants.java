@@ -11,10 +11,4 @@ public class Constants {
     public static final int CAMERA_REQUEST = 1888;
 
 
-    public static final int ACTION_TAKE_PHOTO = 0;
-    public static final String CAMERA_DIR = "/DCIM/";
-    public static final String FILE_PREFIX = "IMG_";
-    public static final String FILE_SUFFIX = ".jpg";
-    public static final String ALBUM_NAME = "ChallengePhotos";
-
 }

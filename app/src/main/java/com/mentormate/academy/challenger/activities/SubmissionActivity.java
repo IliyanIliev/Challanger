@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mentormate.academy.challenger.R;
@@ -42,9 +41,6 @@ public class SubmissionActivity extends ActionBarActivity {
 
         overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
 
-        ActionBar bar = getSupportActionBar();
-        Utils.setCustomActionBarWithColor(bar);
-
         final ImageButton cameraBtn = (ImageButton) findViewById(R.id.cameraBtn);
         challangeImg = (ImageView) findViewById(R.id.challenge_submission);
 
@@ -66,9 +62,8 @@ public class SubmissionActivity extends ActionBarActivity {
 
         if (obtainedIntent != null) {
             String title = obtainedIntent.getStringExtra("name");
-            View v = bar.getCustomView();
-            TextView titleTxtView = (TextView) v.findViewById(R.id.actionbarTitle);
-            titleTxtView.setText(title);
+            ActionBar bar = getSupportActionBar();
+            Utils.setCustomActionBarWithColor(bar, title);
             challangeId = obtainedIntent.getStringExtra("objectId");
         }
 

@@ -78,6 +78,12 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
             user.setUsername(this.mEtUsername.getText().toString());
             user.setPassword(this.mEtPassword.getText().toString());
             user.setEmail(this.mEtEmail.getText().toString());
+            user.put("points", 0);
+            user.put("ThePark",1);
+            user.put("TheCity",1);
+            user.put("TheMall",1);
+            user.put("TheZoo",1);
+            user.put("TheCountry",1);
             user.signUpInBackground(new SignUpCallback() {
                 public void done(ParseException e) {
                     if (e == null) {

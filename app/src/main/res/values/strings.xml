@@ -55,5 +55,11 @@
 
     <string name="title_activity_challenges">ChallengesActivity</string>
     <string name="title_activity_submission">SubmissionActivity</string>
+    <string name="level_n_text">Level 1</string>
+    <string name="points_text">10 points</string>
+    <string name="content_desc_lock">lock image</string>
+    <string name="title_activity_ranking">Ranking</string>
+    <string name="title_activity_review">Review Challenges</string>
+    <string name="title_activity_profile">Profile</string>
 
 </resources>

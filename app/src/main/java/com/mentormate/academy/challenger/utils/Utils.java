@@ -10,6 +10,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.mentormate.academy.challenger.R;
 
@@ -21,11 +23,15 @@ import java.util.Date;
 
 public class Utils {
 
-    public static void setCustomActionBarWithColor(ActionBar bar){
+    public static void setCustomActionBarWithColor(ActionBar bar, String title){
         bar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         bar.setCustomView(R.layout.actionbar);
         bar.setDisplayShowCustomEnabled(true);
         bar.setBackgroundDrawable(new ColorDrawable(0xff1fbba6));
+
+        View v = bar.getCustomView();
+        TextView titleTxtView = (TextView) v.findViewById(R.id.actionbarTitle);
+        titleTxtView.setText(title);
     }
 
     public static File createImageFile() throws IOException {

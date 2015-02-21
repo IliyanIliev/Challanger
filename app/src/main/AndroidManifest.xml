@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
 
     <application
@@ -36,15 +36,27 @@
         </activity>
         <activity
             android:name=".activities.ChallengesActivity"
-            android:parentActivityName=".activities.MainActivity"
             android:label="@string/title_activity_challenges"
+            android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".activities.SubmissionActivity"
+            android:label="@string/title_activity_submission"
             android:parentActivityName=".activities.ChallengesActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_submission" >
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".activities.RankingActivity"
+            android:label="@string/title_activity_ranking" >
+        </activity>
+        <activity
+            android:name=".activities.ReviewActivity"
+            android:label="@string/title_activity_review" >
+        </activity>
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:label="@string/title_activity_profile" >
         </activity>
     </application>
 

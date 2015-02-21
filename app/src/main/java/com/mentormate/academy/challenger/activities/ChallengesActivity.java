@@ -22,24 +22,18 @@ public class ChallengesActivity extends ActionBarActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenges);
-
-        ActionBar bar = getSupportActionBar();
-        Utils.setCustomActionBarWithColor(bar);
-
-
         overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
 
         Intent obtainedIntent = getIntent();
-
+        String title = "";
         if(obtainedIntent!=null){
-            String title = obtainedIntent.getStringExtra("name");
-            View v = bar.getCustomView();
-            TextView titleTxtView = (TextView) v.findViewById(R.id.actionbarTitle);
-            titleTxtView.setText(title);
+             title = obtainedIntent.getStringExtra("name");
+            ActionBar bar = getSupportActionBar();
+            Utils.setCustomActionBarWithColor(bar,title);
         }
 
         // Initialize the subclass of ParseQueryAdapter
-        challangesAdapter = new CustomChallengesAdapter(this, obtainedIntent.getStringExtra("objectId"));
+        challangesAdapter = new CustomChallengesAdapter(this, obtainedIntent.getStringExtra("objectId"), title);
 
         // Initialize ListView and set initial view to mainAdapter
         challengesListView = (ListView) findViewById(R.id.challengesListView);
