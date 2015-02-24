@@ -1,14 +1,21 @@
 package com.mentormate.academy.challenger.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.widget.ListView;
 
 import com.mentormate.academy.challenger.R;
+import com.mentormate.academy.challenger.adapters.CustomRankingAdapter;
 import com.mentormate.academy.challenger.utils.Constants;
 import com.mentormate.academy.challenger.utils.Utils;
 
 public class RankingActivity extends ActionBarActivity {
+
+    private CustomRankingAdapter customRankingAdapter;
+    private ListView rankingListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +26,11 @@ public class RankingActivity extends ActionBarActivity {
         Utils.setCustomActionBarWithColor(bar, Constants.DRAWER_MENU_ITEM_RANKING);
 
         overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
+
+
+        customRankingAdapter = new CustomRankingAdapter(this);
+        rankingListView = (ListView) findViewById(R.id.RankingListView);
+        rankingListView.setAdapter(customRankingAdapter);
 
     }
 
