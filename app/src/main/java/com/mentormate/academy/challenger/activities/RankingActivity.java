@@ -1,10 +1,8 @@
 package com.mentormate.academy.challenger.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.widget.ListView;
 
 import com.mentormate.academy.challenger.R;

@@ -51,7 +51,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         mEtUsername = (EditText) view.findViewById(R.id.etUserName);
         mEtPassword = (EditText) view.findViewById(R.id.etPass);
         mEtEmail = (EditText) view.findViewById(R.id.etEmail);
-
         mBtnRegister = (Button) view.findViewById(R.id.btnSignUp);
 
         mBtnRegister.setOnClickListener(this);
@@ -73,18 +72,11 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
         newUser.setPassword(this.mEtPassword.getText().toString());
         newUser.setEmail(this.mEtEmail.getText().toString());
 
-
         if (validateUser(newUser)) {
             final ParseUser user = new ParseUser();
             user.setUsername(this.mEtUsername.getText().toString());
             user.setPassword(this.mEtPassword.getText().toString());
             user.setEmail(this.mEtEmail.getText().toString());
-            //user.put("points", 0);
-            //user.put("ThePark",1);
-            //user.put("TheCity",1);
-            //user.put("TheMall",1);
-            //user.put("TheZoo",1);
-            //user.put("TheCountry",1);
             user.signUpInBackground(new SignUpCallback() {
                 public void done(ParseException e) {
                     if (e == null) {
@@ -98,7 +90,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
                         ranking.put("TheZoo",1);
                         ranking.put("TheCountry",1);
                         ranking.saveInBackground();
-
 
                         // Show a simple Toast message upon successful registration
                         Toast.makeText(getActivity().getApplicationContext(),

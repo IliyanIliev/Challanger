@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mentormate.academy.challenger.R;
@@ -35,6 +36,7 @@ public class SubmissionActivity extends ActionBarActivity {
     private String challangeId;
     private ImageButton cameraBtn;
     private String storyName = "";
+    private TextView challengeDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class SubmissionActivity extends ActionBarActivity {
 
         cameraBtn = (ImageButton) findViewById(R.id.cameraBtn);
         challangeImg = (ImageView) findViewById(R.id.challenge_submission);
+        challengeDesc = (TextView) findViewById(R.id.challenge_desc);
 
         cameraBtn.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
@@ -68,6 +71,7 @@ public class SubmissionActivity extends ActionBarActivity {
             Utils.setCustomActionBarWithColor(bar, title);
             challangeId = obtainedIntent.getStringExtra("objectId");
             storyName = obtainedIntent.getStringExtra("storyName");
+            challengeDesc.setText(obtainedIntent.getStringExtra("challenge_desc"));
         }
 
         ParseObject challenge = ParseObject.createWithoutData("Challange", challangeId);

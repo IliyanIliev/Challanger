@@ -131,6 +131,7 @@ public class MainActivity extends ActionBarActivity
 
                 break;
             case 2:
+
                 break;
             case 3:
                 intent = new Intent(this, RankingActivity.class);

@@ -44,7 +44,7 @@ public class CustomRankingAdapter extends ParseQueryAdapter<ParseObject> {
         super.getItemView(object, v, parent);
 
         TextView usernameTV = (TextView) v.findViewById(R.id.RankingUsernameTextView);
-        usernameTV.setText("User " + object.get("username").toString());
+        usernameTV.setText(object.get("username").toString());
 
         TextView points = (TextView) v.findViewById(R.id.RainkingPointsTextView);
         points.setText(object.get("points").toString() + " points");

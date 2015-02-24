@@ -35,7 +35,6 @@ public class Utils {
     }
 
     public static File createImageFile() throws IOException {
-        String mCurrentPhotoPath;
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -47,8 +46,6 @@ public class Utils {
                 storageDir      /* directory */
         );
 
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
         return image;
     }
 
@@ -87,9 +84,7 @@ public class Utils {
                     rotatedScaledImage.getHeight(),
                     rotatedScaledImage.getHeight()+100
             );
-
         }else{
-
             resultBmp = Bitmap.createBitmap(
                     rotatedScaledImage,
                     0,
@@ -99,7 +94,6 @@ public class Utils {
             );
         }
 
-        Log.d("TAG", resultBmp.getWidth() + " " + resultBmp.getHeight());
         return resultBmp;
     }
 }

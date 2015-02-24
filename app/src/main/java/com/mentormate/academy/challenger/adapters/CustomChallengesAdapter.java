@@ -20,8 +20,6 @@ public class CustomChallengesAdapter extends ParseQueryAdapter<ParseObject> {
     private int lastLevelUnlocked = 0;
 
     public CustomChallengesAdapter(Context context, final String storyId, String title) {
-        // Use the QueryFactory to construct a PQA that will only show
-        // Todos marked as high-pri
         super(context, new QueryFactory<ParseObject>() {
             public ParseQuery create() {
                 ParseObject obj = ParseObject.createWithoutData("Story", storyId);
@@ -49,8 +47,6 @@ public class CustomChallengesAdapter extends ParseQueryAdapter<ParseObject> {
                 }
             }
         });
-
-
     }
 
     @Override
@@ -77,15 +73,18 @@ public class CustomChallengesAdapter extends ParseQueryAdapter<ParseObject> {
         levelNum.setText("Level" + levelNumber);
 
         ImageView locked = (ImageView) v.findViewById(R.id.lock_level);
+        ImageView completed = (ImageView) v.findViewById(R.id.complete_level);
         if(levelNumber < lastLevelUnlocked){
-            locked.setImageResource(R.drawable.challangecompleted);
-            locked.setVisibility(View.VISIBLE);
+            completed.setVisibility(View.VISIBLE);
+            locked.setVisibility(View.INVISIBLE);
         }
         else if(levelNumber == lastLevelUnlocked){
             locked.setVisibility(View.INVISIBLE);
+            completed.setVisibility(View.INVISIBLE);
         }
         else {
-            locked.setImageResource(R.drawable.lock);
+            locked.setVisibility(View.VISIBLE);
+            completed.setVisibility(View.INVISIBLE);
         }
         // Add the title view
         TextView titleTextView = (TextView) v.findViewById(R.id.challenge_name);

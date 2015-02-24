@@ -53,6 +53,7 @@ public class ChallengesActivity extends ActionBarActivity implements AdapterView
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ParseObject item = (ParseObject) parent.getAdapter().getItem(position);
         String objectID = item.getObjectId();
+        String challenge_desc = item.getString("description");
 
         TextView nameTV = (TextView) view.findViewById(R.id.challenge_name);
         String name = nameTV.getText().toString();
@@ -60,6 +61,7 @@ public class ChallengesActivity extends ActionBarActivity implements AdapterView
         intent.putExtra("objectId",objectID);
         intent.putExtra("name",name);
         intent.putExtra("storyName", storyName);
+        intent.putExtra("challenge_desc",challenge_desc);
         startActivity(intent);
     }
 }

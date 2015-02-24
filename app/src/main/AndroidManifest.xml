@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mentormate.academy.challenger" >
+    package="com.mentormate.academy.challenger">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <permission
+        android:name="com.mentormate.academy.challenger.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.mentormate.academy.challenger.permission.C2D_MESSAGE" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -14,10 +24,10 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activities.DispatchActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,40 +37,59 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.LoginSignupActivity"
             android:label="@string/title_activity_login_signup"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.ChallengesActivity"
             android:label="@string/title_activity_challenges"
             android:parentActivityName=".activities.MainActivity"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.SubmissionActivity"
             android:label="@string/title_activity_submission"
             android:parentActivityName=".activities.ChallengesActivity"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.RankingActivity"
             android:label="@string/title_activity_ranking"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.ReviewActivity"
             android:label="@string/title_activity_review"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:screenOrientation="portrait">
-        </activity>
-    </application>
+            android:screenOrientation="portrait"/>
 
+        <service android:name="com.parse.PushService" />
+
+        <receiver android:name="com.parse.ParseBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.parse.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="com.mentormate.academy.challenger" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.parse.ParsePushBroadcastReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.parse.push.intent.RECEIVE" />
+                <action android:name="com.parse.push.intent.DELETE" />
+                <action android:name="com.parse.push.intent.OPEN" />
+            </intent-filter>
+        </receiver>
+    </application>
 </manifest>

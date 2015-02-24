@@ -54,4 +54,16 @@
         android:layout_alignRight="@+id/textView3"
         android:layout_alignEnd="@+id/textView3"
         android:contentDescription="@string/content_desc_lock" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/complete_level"
+        android:src="@drawable/challangecompleted"
+        android:layout_alignTop="@+id/challenge_name"
+        android:layout_toRightOf="@+id/challenge_name"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3"
+        android:visibility="gone"
+        android:contentDescription="@string/content_desc_lock" />
 </RelativeLayout>

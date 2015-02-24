@@ -29,7 +29,7 @@ public class CustomStoriesAdapter extends BaseAdapter {
         this.context = context;
         this.storyList = storyList;
         inflater = LayoutInflater.from(context);
-        this.arraylist = new ArrayList<Story>();
+        this.arraylist = new ArrayList<>();
         this.arraylist.addAll(storyList);
 
     }
@@ -70,7 +70,6 @@ public class CustomStoriesAdapter extends BaseAdapter {
         }
         // Set the results into TextViews
         holder.name.setText(storyList.get(position).getName());
-
 
         Picasso.with(context).load(storyList.get(position).getPictureUrl()).into(holder.picture);
 

@@ -16,6 +16,7 @@ import com.mentormate.academy.challenger.R;
 import com.mentormate.academy.challenger.activities.MainActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
@@ -51,9 +52,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private void init(View view) {
         mEtUsername = (EditText) view.findViewById(R.id.etUserName);
         mEtPassword = (EditText) view.findViewById(R.id.etPass);
-
         mBtnLogin = (Button) view.findViewById(R.id.btnSignIn);
-
         mTvSignup = (TextView) view.findViewById(R.id.tvSignUp);
 
         mBtnLogin.setOnClickListener(this);
@@ -74,14 +73,19 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
 
     private void login() {
-
+        final String username = this.mEtUsername.getText().toString().trim();
         // Send data to Parse.com for verification
-        ParseUser.logInInBackground(this.mEtUsername.getText().toString().trim(),
+        ParseUser.logInInBackground(username,
                 this.mEtPassword.getText().toString().trim(),
                 new LogInCallback() {
                     public void done(ParseUser user, ParseException e) {
                         if (user != null) {
-                            // If user exist and authenticated, send user to Welcome.class
+                            //Associate current installation with the current user
+                            ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+                            installation.put("usrname", username);
+                            installation.saveInBackground();
+
+                            // If user exist and authenticated, send user to MainActivity
                             Intent intent = new Intent(
                                     getActivity(),
                                     MainActivity.class);
