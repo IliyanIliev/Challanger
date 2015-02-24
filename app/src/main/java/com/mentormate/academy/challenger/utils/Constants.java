@@ -10,5 +10,8 @@ public class Constants {
     public static final String DRAWER_MENU_ITEM_LOGOUT = "Logout";
     public static final int CAMERA_REQUEST = 1888;
 
+    public static final int PROGRESS_STATE = 0;
+    public static final int SUCCESS_STATE = 1;
+
 
 }

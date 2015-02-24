@@ -55,7 +55,6 @@ public class Utils {
     public static Bitmap scalePhoto(Uri imageUri, Activity activity) {
 
         ContentResolver cr = activity.getContentResolver();
-        //imageBitmap =
 
         // Resize photo from camera byte array
         Bitmap currImage = null;

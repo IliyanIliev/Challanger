@@ -33,6 +33,8 @@ public class SubmissionActivity extends ActionBarActivity {
     private ImageView challangeImg;
     private Uri imageUri;
     private String challangeId;
+    private ImageButton cameraBtn;
+    private String storyName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class SubmissionActivity extends ActionBarActivity {
 
         overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
 
-        final ImageButton cameraBtn = (ImageButton) findViewById(R.id.cameraBtn);
+        cameraBtn = (ImageButton) findViewById(R.id.cameraBtn);
         challangeImg = (ImageView) findViewById(R.id.challenge_submission);
 
         cameraBtn.setOnTouchListener(new View.OnTouchListener() {
@@ -65,6 +67,7 @@ public class SubmissionActivity extends ActionBarActivity {
             ActionBar bar = getSupportActionBar();
             Utils.setCustomActionBarWithColor(bar, title);
             challangeId = obtainedIntent.getStringExtra("objectId");
+            storyName = obtainedIntent.getStringExtra("storyName");
         }
 
         ParseObject challenge = ParseObject.createWithoutData("Challange", challangeId);
@@ -81,6 +84,17 @@ public class SubmissionActivity extends ActionBarActivity {
                 if(photoUrl!="" && photoUrl!=null){
                     Picasso.with(SubmissionActivity.this).load(photoUrl).into(challangeImg);
                 }
+                int status = submission.getInt("status");
+                if(status == Constants.PROGRESS_STATE){
+                    cameraBtn.setImageResource(R.drawable.progress);
+                    cameraBtn.setEnabled(false);
+                    cameraBtn.setClickable(false);
+                }
+                else if(status>0){
+                    cameraBtn.setImageResource(R.drawable.completed);
+                    cameraBtn.setEnabled(false);
+                    cameraBtn.setClickable(false);
+                }
             }
         } catch (ParseException e) {
             e.printStackTrace();
@@ -90,6 +104,10 @@ public class SubmissionActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.CAMERA_REQUEST && resultCode == RESULT_OK) {
+            cameraBtn.setImageResource(R.drawable.progress);
+            cameraBtn.setEnabled(false);
+            cameraBtn.setClickable(false);
+
             Uri currentImg = imageUri;
             getContentResolver().notifyChange(currentImg, null);
             Bitmap scaledImage = Utils.scalePhoto(imageUri, SubmissionActivity.this);
@@ -106,8 +124,10 @@ public class SubmissionActivity extends ActionBarActivity {
 
             ParseObject submissionObj = new ParseObject("Submission");
             submissionObj.put("user",user);
+            submissionObj.put("storyName",storyName);
             submissionObj.put("challenge", ParseObject.createWithoutData("Challange", challangeId));
             submissionObj.put("photo", photo);
+            submissionObj.put("status",Constants.PROGRESS_STATE);
             submissionObj.saveInBackground(new SaveCallback() {
 
                 public void done(ParseException e) {

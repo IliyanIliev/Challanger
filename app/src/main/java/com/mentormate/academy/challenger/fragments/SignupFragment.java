@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.mentormate.academy.challenger.R;
 import com.mentormate.academy.challenger.models.User;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
@@ -74,19 +75,31 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
 
 
         if (validateUser(newUser)) {
-            ParseUser user = new ParseUser();
+            final ParseUser user = new ParseUser();
             user.setUsername(this.mEtUsername.getText().toString());
             user.setPassword(this.mEtPassword.getText().toString());
             user.setEmail(this.mEtEmail.getText().toString());
-            user.put("points", 0);
-            user.put("ThePark",1);
-            user.put("TheCity",1);
-            user.put("TheMall",1);
-            user.put("TheZoo",1);
-            user.put("TheCountry",1);
+            //user.put("points", 0);
+            //user.put("ThePark",1);
+            //user.put("TheCity",1);
+            //user.put("TheMall",1);
+            //user.put("TheZoo",1);
+            //user.put("TheCountry",1);
             user.signUpInBackground(new SignUpCallback() {
                 public void done(ParseException e) {
                     if (e == null) {
+                        String username = mEtUsername.getText().toString();
+                        ParseObject ranking = new ParseObject("Ranking");
+                        ranking.put("username",username);
+                        ranking.put("points", 0);
+                        ranking.put("ThePark",1);
+                        ranking.put("TheCity",1);
+                        ranking.put("TheMall",1);
+                        ranking.put("TheZoo",1);
+                        ranking.put("TheCountry",1);
+                        ranking.saveInBackground();
+
+
                         // Show a simple Toast message upon successful registration
                         Toast.makeText(getActivity().getApplicationContext(),
                                 "Successfully Signed up, please log in.",

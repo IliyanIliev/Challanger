@@ -1,12 +1,15 @@
 package com.mentormate.academy.challenger.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mentormate.academy.challenger.R;
+import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
@@ -30,9 +33,23 @@ public class CustomChallengesAdapter extends ParseQueryAdapter<ParseObject> {
             }
         });
 
-        String storyTitle = title.replaceAll("\\s+","");
+        lastLevelUnlocked = 0;
+        final String storyTitle = title.replaceAll("\\s+","");
         ParseUser currentUser = ParseUser.getCurrentUser();
-        lastLevelUnlocked = (int) currentUser.get(storyTitle);
+        String username = currentUser.getString("username");
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Ranking");
+        query.whereEqualTo("username", username);
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            public void done(ParseObject ranking, ParseException e) {
+                if (ranking != null) {
+                    lastLevelUnlocked = ranking.getInt(storyTitle);
+                } else {
+                    Log.d("ERR", "Could not get story last level!");
+                }
+            }
+        });
+
 
     }
 
@@ -60,11 +77,15 @@ public class CustomChallengesAdapter extends ParseQueryAdapter<ParseObject> {
         levelNum.setText("Level" + levelNumber);
 
         ImageView locked = (ImageView) v.findViewById(R.id.lock_level);
-        if(levelNumber <= lastLevelUnlocked){
+        if(levelNumber < lastLevelUnlocked){
+            locked.setImageResource(R.drawable.challangecompleted);
+            locked.setVisibility(View.VISIBLE);
+        }
+        else if(levelNumber == lastLevelUnlocked){
             locked.setVisibility(View.INVISIBLE);
         }
         else {
-            locked.setVisibility(View.VISIBLE);
+            locked.setImageResource(R.drawable.lock);
         }
         // Add the title view
         TextView titleTextView = (TextView) v.findViewById(R.id.challenge_name);

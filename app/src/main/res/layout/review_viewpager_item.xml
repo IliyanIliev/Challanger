@@ -21,14 +21,14 @@
         android:textColor="@android:color/white" />
 
     <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/review_challenger_tv"
         android:layout_centerHorizontal="true">
 
         <ImageView
-            android:id="@+id/challenge_submission"
+            android:id="@+id/review_photo_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/cameraBtn"
@@ -36,26 +36,29 @@
             android:scaleType="fitXY"
             android:src="@drawable/noimage" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal|bottom"
-            android:src="@drawable/camerabar" />
+        <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:padding="20dp">
 
-        <ImageButton
-            android:id="@+id/cameraBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal|bottom"
-            android:background="@null"
-            android:onClick="dispatchTakePictureIntent"
-            android:padding="15dp"
-            android:src="@drawable/cameraicon" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/review_reject_button"
+                        android:id="@+id/review_reject_button"
+                    />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/review_approve_button"
+                        android:id="@+id/review_approve_button"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+                </RelativeLayout>
+
     </FrameLayout>
 
 
